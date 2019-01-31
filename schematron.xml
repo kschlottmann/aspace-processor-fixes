@@ -4,85 +4,85 @@
   <ns uri="urn:isbn:1-931666-22-9" prefix="ead"/>
 
   <phase id="automated">
-    <active pattern="descgrp-automated" />
+    <!--<active pattern="descgrp-automated" />-->
     <active pattern="date-unitdate-automated" />
     <active pattern="container-automated" />
     <active pattern="dao-automated" />
     <active pattern="any-automated" />
     <active pattern="c-automated" />
     <active pattern="note-automated" />
-    <active pattern="unitdate-automated" />
+    <!--<active pattern="unitdate-automated" />-->
     <active pattern="unitid-automated" />
     <active pattern="unittitle-automated" />
     <active pattern="scopecontent-automated" />
-    <active pattern="daogrp-automated" />
-    <active pattern="namegrp-automated" />
+ <!--   <active pattern="daogrp-automated" />
+    <active pattern="namegrp-automated" />-->
     <active pattern="name-automated" />
-    <active pattern="identifier-automated" />
+<!--    <active pattern="identifier-automated" />
     <active pattern="bibliography-automated" />
-    <active pattern="ptrgrp-automated" />
+    <active pattern="ptrgrp-automated" />-->
     <active pattern="nested-list-automated" />
   </phase>
   <phase id="manual">
-    <active pattern="descgrp-manual" />
+<!--    <active pattern="descgrp-manual" />-->
     <active pattern="extent-nonnumeric-manual" />
-    <active pattern="did-manual" />
+<!--    <active pattern="did-manual" />
     <active pattern="table-manual" />
-    <active pattern="change-manual" />
+    <active pattern="change-manual" />-->
   </phase>
 
   <pattern id="extent-nonnumeric-manual">
-    <rule context="//*:extent">
-      <!-- 'extent' elements -->
+    <!--<rule context="//*:dsc//*:extent">
+      <!-\- 'extent' elements -\->
       <assert test="matches(., '^\s*[0123456789.]')" diagnostics="enm-1">'extent' element content should not start with non-numeric character except '.'.</assert>
-    </rule>
+    </rule>-->
   </pattern>
 
-  <pattern id="descgrp-automated">
-    <rule context="//*:descgrp/*:head">
-      <!-- 'head' elements inside 'descgrp' elements -->
+  <!--<pattern id="descgrp-automated">
+    <rule context="//*:dsc//*:descgrp/*:head">
+      <!-\- 'head' elements inside 'descgrp' elements -\->
       <assert test="not(.)" diagnostics="da-1">'head' element should be dropped from descgrp</assert>
     </rule>
 
-    <rule context="//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:address|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:blockquote|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:chronlist|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:list|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:p">
-      <!-- 'descgrp' sub-elements of kinds valid in 'note' element -->
+    <rule context="//*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:address|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:blockquote|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:chronlist|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:list|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:p">
+      <!-\- 'descgrp' sub-elements of kinds valid in 'note' element -\->
       <assert test="not(.)" diagnostics="da-2">'descgrp' is deprecated, and must be removed. 'address', 'blockquote', 'chronlist', 'list', and 'p' children of 'descgrp' must be reparented into a new 'note' element in the 'descgrp's parent element</assert>
     </rule>
-    <rule context="//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:accessrestrict|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:accruals|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:acqinfo|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:altformavail|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:appraisal|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:custodhist|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:note|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:prefercite|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:processinfo|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:separatedmaterial|
-                   //*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:userestrict">
-      <!-- 'descgrp' sub-elements of kinds valid outside of 'note' -->
+    <rule context="//*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:accessrestrict|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:accruals|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:acqinfo|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:altformavail|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:appraisal|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:custodhist|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:note|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:prefercite|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:processinfo|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:separatedmaterial|
+                   //*:dsc//*:descgrp[(@type and @type != 'add') or (not(normalize-space(@type)) and @encodinganalog = '544')]/*:userestrict">
+      <!-\- 'descgrp' sub-elements of kinds valid outside of 'note' -\->
       <assert test="not(.)" diagnostics="da-3">'descgrp' is deprecated, and must be removed. Element children of the following types must be reparented into 'descgrp's parent element:
       'accessrestrict', 'accruals', 'acqinfo', 'altformavail', 'appraisal', 'custodhist', 'note', 'prefercite', 'processinfo', 'separatedmaterial', 'userestrict'</assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
-  <pattern id="descgrp-manual">
-    <rule context="//*:descgrp[@type]">
-      <!-- 'descgrp' elements with type 'add' -->
+  <!--<pattern id="descgrp-manual">
+    <rule context="//*:dsc//*:descgrp[@type]">
+      <!-\- 'descgrp' elements with type 'add' -\->
       <assert test="not(@type='add')" diagnostics="dm-1">'descgrp' is deprecated, and must be removed. 'descgrp' element with type 'add' requires manual review and intervention.</assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
-  <pattern id="did-manual">
+  <!--<pattern id="did-manual">
 
     <rule context="/*:ead/*:archdesc/*:did">
-      <!-- 'did' element (collection-level) -->
-      <assert test=".[*:unitid]" diagnostics="didm-1">
+      <!-\- 'did' element (collection-level) -\->
+     <!-\- <assert test=".[*:unitid]" diagnostics="didm-1">
         Collection level 'did' element must contain a 'unitid' element.
-      </assert>
+      </assert>-\->
 
       <assert test=".[*:unittitle]" diagnostics="didm-2">
         Collection level 'did' element must contain a 'unittitle' element.
@@ -98,22 +98,22 @@
 
     </rule>
 
-    <rule context="/*:ead/*:archdesc/*[not(local-name(.) = 'did')]//*:did">
-      <!-- 'did' elements (anywhere below collection-level)-->
+    <rule context="/*:ead/*:archdesc/*[not(local-name(.) = 'did')]//*:dsc//*:did">
+      <!-\- 'did' elements (anywhere below collection-level)-\->
       <assert test="count(./*:unitdate|./*:unittitle) > 0" diagnostics="didm-4">
         'did' elements must contain a either a 'unitdate' element, a 'unittitle' element or both.
       </assert>
     </rule>
 
     <rule context="/*:ead/*:archdesc/*:did/*:unitid">
-      <!-- 'unitid' element (collection-level) -->
+      <!-\- 'unitid' element (collection-level) -\->
       <assert test="./text()[normalize-space(.)]" diagnostics="didm-1a">
         Collection level 'unitid' element must not be empty.
       </assert>
     </rule>
 
     <rule context="/*:ead/*:archdesc/*:did/*:unittitle">
-      <!-- 'unittitle' element (collection-level) -->
+      <!-\- 'unittitle' element (collection-level) -\->
       <assert test="./text()[normalize-space(.)]" diagnostics="didm-2a">
         Collection level 'unittitle' element must not be empty.
       </assert>
@@ -121,32 +121,32 @@
 
     <rule context="/*:ead/*:archdesc/*:did/*:unitdate|
                    /*:ead/*:archdesc/*:did/*:unittitle/*:unitdate">
-      <!-- 'unitdate' element (collection-level) -->
+      <!-\- 'unitdate' element (collection-level) -\->
       <assert test="./text()[normalize-space(.)]" diagnostics="didm-3a">
         Collection level 'unitdate' element must not be empty.
       </assert>
     </rule>
 
     <rule context="/*:ead/*:archdesc/*:did/*:physdesc/*:extent">
-      <!-- 'physdesc/extent' element (collection-level) -->
+      <!-\- 'physdesc/extent' element (collection-level) -\->
       <assert test="./text()[normalize-space(.)]" diagnostics="didm-5a">
         Collection level 'physdesc/extent' element must not be empty.
       </assert>
     </rule>
 
-  </pattern>
+  </pattern>-->
 
-  <pattern id="table-manual">
-    <rule context="//*:table">
-      <!-- 'table' element -->
+  <!--<pattern id="table-manual">
+    <rule context="//*:dsc//*:table">
+      <!-\- 'table' element -\->
       <assert test="not(.)" diagnostics="tblm-1">
         'table' element is deprecated and must be removed.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
   <pattern id="date-unitdate-automated">
-    <rule context="//*:date|//*:unitdate">
+    <rule context="//*:dsc//*:date|//*:dsc//*:unitdate">
       <!-- 'date' and 'unitdate' elements -->
       <assert test="not(.[@startYear or @endYear])" diagnostics="dua-1">
         'date' and 'unitdate' elements must not contain 'startYear' or 'endYear' attributes.
@@ -165,20 +165,20 @@
 
 
   <pattern id="container-automated">
-    <rule context="//*:container">
+    <rule context="//*:dsc//*:container">
       <!-- 'container' element -->
       <assert test=".[@type]" diagnostics="ca-1">
         'container' element must contain 'type' attribute.
       </assert>
 
-      <assert test=".[@label]" diagnostics="ca-2">
+      <!--<assert test=".[@label]" diagnostics="ca-2">
         'container' element must contain 'label' attribute.
-      </assert>
+      </assert>-->
     </rule>
   </pattern>
 
   <pattern id="dao-automated">
-    <rule context="//*:dao">
+    <rule context="//*:dsc//*:dao">
       <!-- 'dao' element -->
       <assert test=".[@xlink:title]" diagnostics="dao-1">
         'dao' element must contain 'xlink:title' attribute.
@@ -187,7 +187,7 @@
   </pattern>
 
   <pattern id="any-automated">
-    <rule context="//*">
+    <rule context="//*:dsc//*">
       <!-- Any element ('//*') -->
       <assert test=".[node() or @*]" diagnostics="noempty-1">
         Any element must contain either text, element, or attribute content.
@@ -196,16 +196,17 @@
   </pattern>
 
   <pattern id="c-automated">
-    <rule context="//*:c|//*:c01|//*:c02|//*:c03|//*:c04|//*:c05|//*:c06|//*:c07|//*:c08|//*:c09|//*:c10|//*:c11|//*:c12 ">
+    <rule context="//*:dsc//*:c|//*:dsc//*:c01|//*:dsc//*:c02|//*:dsc//*:c03|//*:dsc//*:c04|//*:dsc//*:c05|//*:dsc//*:c06|//*:dsc//*:c07|//*:dsc//*:c08|//*:dsc//*:c09|//*:dsc//*:c10|//*:dsc//*:c11|//*:dsc//*:c12 ">
       <!-- 'c' element -->
-      <assert test=".[(@level and @level != 'otherlevel') or (@level = 'otherlevel' and normalize-space(@otherlevel))]" diagnostics="c-1">
+<!-- KS: Removed otherlevel test, as this doesn't impact import or roundtripping.  It's not good, but we'll live  -->
+      <assert test=".[@level]" diagnostics="c-1">
         'c' element must contain a value in its 'level' attribute.  If that value is 'otherlevel', the 'c' must also contain an 'otherlevel' attribute.
       </assert>
     </rule>
   </pattern>
 
   <pattern id="note-automated">
-    <rule context="//*:note">
+    <rule context="//*:dsc//*:note">
       <!-- 'note' element -->
       <assert test="not(./ancestor::*/controlaccess)" diagnostics="note-1">
         'controlaccess' elements cannot contain 'note' elements.
@@ -222,54 +223,54 @@
     </rule>
   </pattern>
 
-  <pattern id="unitdate-automated">
-    <rule context="//*:unitdate">
-      <!-- 'unitdate' element -->
+  <!--<pattern id="unitdate-automated">
+    <rule context="//*:dsc//*:unitdate">
+      <!-\- 'unitdate' element -\->
       <assert test="not(matches(string-join(./text(), ''), '(circa|ca|c|approximately|approx)(\s|\.)', 'i'))"
               diagnostics="dua-2">
         'unitdate' containing approximation language must carry 'certainty' attribute with value 'approximate'.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
   <pattern id="unitid-automated">
-    <rule context="//*:did[count(./*:unitid) gt 1]">
+    <rule context="//*:dsc//*:did[count(./*:unitid) gt 1]">
       <!-- 'unitid' element -->
       <assert test="not(.)" diagnostics="unitid-1">
         More than one 'unitid' element may not be provided per level of description ('did' element), per ArchivesSpace.  One authoritative 'unitid' element should be decided on or created, method of choice/construction is left to local practice to determine.
       </assert>
     </rule>
 
-    <rule context="//*:unitid">
+    <rule context="//*:dsc//*:unitid">
       <!-- 'unitid' elements pointed at by 'ref' elements -->
-      <assert test="not(./@id = //*:ref/@target)" diagnostics="unitid-2">
+      <assert test="not(./@id = //*:dsc//*:ref/@target)" diagnostics="unitid-2">
         'ref' elements must not point at 'unitid' elements.  'target' attribute should be rewritten to point at parent 'c'.
       </assert>
     </rule>
   </pattern>
 
   <pattern id="unittitle-automated">
-    <rule context="//*:did[count(./*:unittitle) gt 1]">
+    <rule context="//*:dsc//*:did[count(./*:unittitle) gt 1]">
       <!-- 'unittitle' element -->
       <assert test="not(.)" diagnostics="unittitle-1">
         More than one 'unittitle' element may not be provided per level of description ('did' element), per ArchivesSpace.  One authoritative 'unittitle' element should be decided on or created, method of choice/construction is left to local practice to determine.
       </assert>
     </rule>
 
-    <rule context="//*:unittitle">
+    <rule context="//*:dsc//*:unittitle">
       <!-- 'unittitle' elements -->
-      <assert test="not(./@id = //*:ref/@target)" diagnostics="unittitle-2">
+      <assert test="not(./@id = //*:dsc//*:ref/@target)" diagnostics="unittitle-2">
         'ref' elements must not point at 'unittitle' elements.  'target' attribute should be rewritten to point at parent 'c'.
       </assert>
 
-      <assert test="not(.//*:unitdate)" diagnostics="unittitle-3">
+      <!--<assert test="not(.//*:dsc//*:unitdate)" diagnostics="unittitle-3">
         'unitdate' elements nested inside 'unittitle' elements will be pulled out by ArchivesSpace, and thus leave gaps in their parent's content.  Suggest copying 'unitdate' content directly into parent element, and moving 'unitdate' to following-sibling position relative to its enclosing 'unitdate'.
-      </assert>
+      </assert>-->
     </rule>
   </pattern>
 
   <pattern id="scopecontent-automated">
-    <rule context="//*:scopecontent/*:arrangement">
+    <rule context="//*:dsc//*:scopecontent/*:arrangement">
       <!-- 'scopecontent' element -->
       <assert test="not(.)" diagnostics="scopecontent-1">
         'scopecontent' elements must not contain 'arrangement' elements.  Move 'arrangement' element to be a sibling of containing 'scopecontent' element.
@@ -277,60 +278,60 @@
     </rule>
   </pattern>
 
-  <pattern id="daogrp-automated">
-    <rule context="//*:daogrp">
-      <!-- 'daogrp' element -->
+  <!--<pattern id="daogrp-automated">
+    <rule context="//*:dsc//*:daogrp">
+      <!-\- 'daogrp' element -\->
       <assert test="not(.)" diagnostics="daogrp-1">
         'daogrp' element is not well supported in ArchivesSpace.  Remove 'daogrp', and rewrite contained 'daoloc' elements to 'dao's, taking xlink attributes from 'arc' elements.
       </assert>
     </rule>
 
-    <rule context="//*:daogrp/*:arc[@xlink:show = 'new']">
-      <!-- 'arc' element -->
+    <rule context="//*:dsc//*:daogrp/*:arc[@xlink:show = 'new']">
+      <!-\- 'arc' element -\->
       <assert test=".[@xlink:actuate = 'onRequest']" diagnostics = "daogrp-2">
         'arc' elements with the 'xlink:show' attribute of 'new' should have the 'xlink:actuate' attribute 'onRequest'.
       </assert>
     </rule>
-  </pattern>
-  <pattern id="namegrp-automated">
-    <rule context="//*:namegrp">
-      <!-- 'namegrp' element -->
+  </pattern>-->
+  <!--<pattern id="namegrp-automated">
+    <rule context="//*:dsc//*:namegrp">
+      <!-\- 'namegrp' element -\->
       <assert test="not(.)" diagnostics="namegrp-1">
         'namegrp' element is not supported in ArchivesSpace. Serialize contents of 'namegrp' subelements in content of first subelement, and replace 'namegrp' with first subelement.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
-  <pattern id="identifier-automated">
+  <!--<pattern id="identifier-automated">
     <rule context="/*:ead">
-      <!-- 'ead' element -->
-      <assert test="not(.[.//*:eadid/@identifier]) or
-                    (./*:archdesc//*:processinfo/*:p/text() = .//*:eadid/@identifier)"
+      <!-\- 'ead' element -\->
+      <assert test="not(.[.//*:dsc//*:eadid/@identifier]) or
+                    (./*:archdesc//*:dsc//*:processinfo/*:p/text() = .//*:dsc//*:eadid/@identifier)"
               diagnostics="identifier-1">
         The 'identifier' attribute on 'eadid' elements is not preserved by ArchivesSpace.  Place contents in a 'p' element within a 'processinfo' element in 'archdesc'.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
-  <pattern id="bibliography-automated">
-    <rule context="//*:bibliography/*:list">
-      <!-- 'bibliography' element -->
+  <!--<pattern id="bibliography-automated">
+    <rule context="//*:dsc//*:bibliography/*:list">
+      <!-\- 'bibliography' element -\->
       <assert test="not(.)" diagnostics="bibliography-1">
         'bibliography' element with 'list' element as content imports incorrectly.  Change 'item' elements to 'bibref' elements, move into parent 'bibliography', drop 'list'.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
-  <pattern id="change-manual">
-    <rule context="//*:revisiondesc/*:change">
-      <!-- 'change' element in 'revisiondesc' -->
+  <!--<pattern id="change-manual">
+    <rule context="//*:dsc//*:revisiondesc/*:change">
+      <!-\- 'change' element in 'revisiondesc' -\->
       <assert test=".[*:date and *:item]" diagnostics="change-1">
         'revisiondesc/change' element must contain both a date and an item subelement.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
   <pattern id="name-automated">
-    <rule context="//*:name">
+    <rule context="//*:dsc//*:name">
       <!-- 'name' element -->
       <assert test=".[not(@encodinganalog = ('110', '111', '130', '240', '245', '610', '611', '630', '650', '651', '654', '700', '710'))]" diagnostics="name-1">
         'name' elements with 'encodinganalog' attribute values that correspond to more specific EAD elements should be represented by those elements instead of 'name'.
@@ -338,23 +339,23 @@
     </rule>
   </pattern>
 
-  <pattern id="ptrgrp-automated">
-    <rule context="//*:ptrgrp">
-      <!-- 'ptrgrp' element -->
+  <!--<pattern id="ptrgrp-automated">
+    <rule context="//*:dsc//*:ptrgrp">
+      <!-\- 'ptrgrp' element -\->
       <assert test="not(.)" diagnostics="ptrgrp-1">
         'ptrgrp' elements with nested 'ref' elements are not properly imported by ArchivesSpace. The 'ptrgrp' should be replaced with a 'ref' element and the 'ref's to nested 'ptr's.
       </assert>
     </rule>
-  </pattern>
+  </pattern>-->
 
   <pattern id="nested-list-automated">
-    <rule context="//*:list">
+    <rule context="//*:dsc//*:list">
       <!-- 'list' element -->
-      <assert test="not(//*:item/*:list)" diagnostics="nested-list-1">
+      <assert test="not(//*:dsc//*:item/*:list)" diagnostics="nested-list-1">
         'item' elements with 'list' element children are not properly imported by ArchivesSpace.  'list' elements should be flattened so that no nesting occurs.
       </assert>
 
-      <assert test="not(//*:item/*[not(./self::list)]//list)" diagnostics="nested-list-2">
+      <assert test="not(//*:dsc//*:item/*[not(./self::list)]//list)" diagnostics="nested-list-2">
         'item' elements with non-'list' children which have 'list' children are not properly imported by ArchivesSpace.  'list' elements should be flattened so that no nesting occurs.
       </assert>
     </rule>
